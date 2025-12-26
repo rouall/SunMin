@@ -695,7 +695,7 @@ var _hmt = _hmt || [];
             <h1 class="main-title">Engineering the Intelligent Future</h1>
             
             <div class="description-text">
-                <p>SunMin integrates high-dimensional neural networks with next-generation fusion energy technology, building the backbone of autonomous evolving machine civilization to provide ultimate computational power and energy support globally.</p>
+                <p>SunMin integrates high-dimensional neural networks with next-generation fusion energy technology to build a self-evolving, all-state fusion reaction system, providing global access to ultimate computing capabilities and new energy support.</p>
             </div>
         </div>
 
@@ -789,7 +789,7 @@ var _hmt = _hmt || [];
                 
                 // 随机星星动画
                 const animationType = animations[Math.floor(Math.random() * animations.length)];
-                const duration = 15 + Math.random() * 10; // 15-25秒的缓慢移动
+                const duration = 8 + Math.random() * 6; // 从15-25秒改为8-14秒，运动更快
                 
                 dot.style.animation = `${animationType} ${duration}s linear infinite`;
                 container.appendChild(dot);
@@ -890,11 +890,11 @@ var _hmt = _hmt || [];
             }
             
             // 持续生成星星点，但控制吸引频率
-            setInterval(createDot, 800);
+            setInterval(createDot, 600); // 从800ms改为600ms，生成更频繁
             
             // 初始生成适量的点
-            for(let i = 0; i < 15; i++) {
-                setTimeout(createDot, i * 300);
+            for(let i = 0; i < 20; i++) { // 从15个增加到20个
+                setTimeout(createDot, i * 200);
             }
         }
         
