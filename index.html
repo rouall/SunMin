@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNMIN | Neural Nexus & Energy Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@100;300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #00f2ff;
+            --blue: #0044ff;
+            --bg: #010103;
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* --- 3D 渲染层 --- */
+        #canvas-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        /* --- 科技感十字准星光标 --- */
+        #cursor-crosshair {
+            position: fixed; pointer-events: none; z-index: 9999;
+            width: 40px; height: 40px; border: 1px solid rgba(0, 242, 255, 0.3);
+            transform: translate(-50%, -50%); border-radius: 50%;
+            transition: width 0.3s, height 0.3s;
+        }
+        #cursor-crosshair::before, #cursor-crosshair::after {
+            content: ''; position: absolute; background: var(--cyan);
+        }
+        #cursor-crosshair::before { width: 100%; height: 1px; top: 50%; left: 0; }
+        #cursor-crosshair::after { height: 100%; width: 1px; left: 50%; top: 0; }
+
+        /* --- 侧边数据瀑布 --- */
+        .data-stream {
+            position: fixed; top: 0; height: 100vh; width: 50px;
+            font-family: 'JetBrains Mono', monospace; font-size: 8px;
+            color: rgba(0, 242, 255, 0.2); overflow: hidden;
+            z-index: 2; padding-top: 20px; text-align: center;
+        }
+        .stream-left { left: 10px; }
+        .stream-right { right: 10px; }
+
+        /* --- UI 面板层 --- */
+        .overlay {
+            position: relative; z-index: 10; height: 100vh;
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 40px; pointer-events: none;
+        }
+        .overlay * { pointer-events: auto; }
+
+        /* --- 导航栏 --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .brand { font-weight: 700; letter-spacing: 10px; font-size: 22px; color: #fff; text-decoration: none; }
+        .system-status { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cyan); border: 1px solid var(--cyan); padding: 5px 12px; border-radius: 20px; }
+
+        /* --- 主标题区 --- */
+        .hero-main { max-width: 900px; }
+        .tagline { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 8px; color: var(--cyan); margin-bottom: 20px; display: block; }
+        h1 { font-size: clamp(50px, 8vw, 120px); line-height: 0.85; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; letter-spacing: -2px; }
+        .description { max-width: 500px; font-weight: 300; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.6); border-left: 1px solid var(--cyan); padding-left: 25px; }
+
+        /* --- 底部数据终端 --- */
+        .footer-terminal {
+            display: flex; gap: 40px; align-items: flex-end;
+        }
+        .stat-box { background: var(--panel-bg); border: 1px solid var(--border); padding: 20px 30px; backdrop-filter: blur(10px); }
+        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--cyan); margin-bottom: 10px; display: block; }
+        .stat-value { font-size: 24px; font-weight: 700; }
+
+        /* --- 按钮 --- */
+        .btn-core {
+            display: inline-block; margin-top: 40px; padding: 18px 40px;
+            background: var(--cyan); color: #000; text-decoration: none;
+            font-weight: 700; font-size: 12px; letter-spacing: 2px;
+            transition: 0.4s; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+        .btn-core:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--cyan); }
+
+    </style>
+</head>
+<body>
+
+    <div id="cursor-crosshair"></div>
+    <div id="canvas-container"></div>
+
+    <div class="data-stream stream-left" id="stream-l"></div>
+    <div class="data-stream stream-right" id="stream-r"></div>
+
+    <div class="overlay">
+        <nav>
+            <a href="#" class="brand">SUNMIN</a>
+            <div class="system-status">CORE_INIT_SUCCESSFUL [99.2%]</div>
+        </nav>
+
+        <div class="hero-main">
+            <span class="tagline">NEURAL NEXUS // TYPE-S</span>
+            <h1>Intelligence<br><span style="color: transparent; -webkit-text-stroke: 1px #fff;">Redefined.</span></h1>
+            <p class="description">
+                SUNMIN 融合了高维神经网络与下一代聚变能源技术。我们正在构建自主进化的机器文明骨干，为全球提供极致的算力与动力支撑。
+            </p>
+            <a href="#" class="btn-core">ACCESS CORE SYSTEM</a>
+        </div>
+
+        <div class="footer-terminal">
+            <div class="stat-box">
+                <span class="stat-label">NEURAL SYNC</span>
+                <div class="stat-value">0.0012<small style="font-size: 10px;">ms</small></div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">ENERGY YIELD</span>
+                <div class="stat-value">94.8<small style="font-size: 10px;">GW/s</small></div>
+            </div>
+            <div class="stat-box" style="flex-grow: 1; text-align: right;">
+                <span class="stat-label">GLOBAL COORDINATES</span>
+                <div class="stat-value" id="coords">0.000, 0.000</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // --- 1. 十字光标逻辑 ---
+        const crosshair = document.getElementById('cursor-crosshair');
+        const coords = document.getElementById('coords');
+        document.addEventListener('mousemove', (e) => {
+            crosshair.style.left = e.clientX + 'px';
+            crosshair.style.top = e.clientY + 'px';
+            coords.innerText = `${e.clientX.toFixed(0)}, ${e.clientY.toFixed(0)}`;
+        });
+
+        // --- 2. 侧边代码流生成 ---
+        const hex = '0123456789ABCDEF';
+        function genStream() {
+            let s = '';
+            for(let i=0; i<100; i++) s += hex[Math.floor(Math.random()*16)] + '<br>';
+            document.getElementById('stream-l').innerHTML = s;
+            document.getElementById('stream-r').innerHTML = s;
+        }
+        setInterval(genStream, 150);
+
+        // --- 3. 增强版 3D 神经网络 ---
+        let scene, camera, renderer, globe, points;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
+            camera.position.z = 900;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // 创建球体网络
+            const geometry = new THREE.SphereGeometry(400, 40, 40);
+            const wireMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00f2ff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.1
+            });
+            globe = new THREE.Mesh(geometry, wireMaterial);
+            scene.add(globe);
+
+            // 增加发光粒子节点
+            const pGeometry = new THREE.BufferGeometry();
+            const pCount = 1500;
+            const pos = [];
+            for(let i=0; i<pCount; i++) {
+                const r = 400;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                pos.push(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta), r*Math.cos(phi));
+            }
+            pGeometry.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            const pMaterial = new THREE.PointsMaterial({ size: 2, color: 0x00f2ff, transparent: true, opacity: 0.8 });
+            points = new THREE.Points(pGeometry, pMaterial);
+            globe.add(points);
+
+            // 添加环境装饰点
+            const starGeo = new THREE.BufferGeometry();
+            const starPos = [];
+            for(let i=0; i<3000; i++) starPos.push((Math.random()-0.5)*2000, (Math.random()-0.5)*2000, (Math.random()-0.5)*2000);
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+            const starMat = new THREE.PointsMaterial({ size: 1, color: 0xffffff, transparent: true, opacity: 0.3 });
+            scene.add(new THREE.Points(starGeo, starMat));
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            globe.rotation.y += 0.001;
+            globe.rotation.x += 0.0005;
+            renderer.render(scene, camera);
+        }
+
+        init(); animate();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

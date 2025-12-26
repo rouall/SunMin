@@ -1,0 +1,30 @@
+:root{
+  --bg:#0B0F18;
+  --gold:#D4AF37;
+  --cyber:#00C6FF;
+  --white:#FFFFFF;
+  --gray:#8899AA;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;}
+.hero__content h1{font-family:'Cormorant Garamond',serif;font-size:7rem;letter-spacing:4px;color:var(--gold);}
+.hero__content h2{font-size:1.5rem;font-weight:300;margin:.5rem 0 1.2rem;color:var(--cyber);}
+.hero__content p{color:var(--gray);margin-bottom:2.5rem;}
+.btn-gold{border:1px solid var(--gold);padding:.9rem 2.5rem;color:var(--gold);text-decoration:none;transition:.3s;}
+.btn-gold:hover{background:var(--gold);color:var(--bg);}
+.robot-eye{position:absolute;width:60px;height:60px;border:2px solid var(--cyber);border-radius:50%;right:10%;top:50%;transform:translateY(-50%);box-shadow:0 0 20px var(--cyber),inset 0 0 10px var(--cyber);animation:scan 3s infinite;}
+@keyframes scan{0%,100%{box-shadow:0 0 20px var(--cyber),inset 0 0 10px var(--cyber);}50%{box-shadow:0 0 40px 5px var(--cyber),inset 0 0 20px var(--cyber);}}
+.kpi{display:flex;justify-content:space-around;padding:10vh 5vw;text-align:center;}
+.kpi__item .num{font-size:3.5rem;color:var(--gold);}
+.kpi__item .label{display:block;margin-top:.5rem;color:var(--gray);}
+.features{display:flex;gap:3vw;justify-content:center;padding:8vh 5vw;}
+.card{flex:1 1 280px;background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.2);padding:2.5rem 2rem;text-align:center;transition:transform .4s;}
+.card:hover{transform:translateY(-8px);border-color:var(--gold);}
+.card h3{margin-bottom:1rem;color:var(--cyber);}
+footer{text-align:center;padding:4rem 5vw;border-top:1px solid var(--gold);font-size:.85rem;color:var(--gray);}
+@media(max-width:768px){
+  .hero__content h1{font-size:4.5rem;}
+  .kpi,.features{flex-direction:column;align-items:center;}
+}

@@ -1,24 +1,84 @@
-# Nestjs specific
-/dist
-/node_modules
-/build
-/tmp
+# ----------------------------
+# ⚙️ 系统自动文件
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
 
-# Logs
-logs
-*.log
+# ----------------------------
+# ⚙️ 构建产物
+# ----------------------------
+dist/
+build/
+out/
+*.zip
+*.crx
+
+# ----------------------------
+# ⚙️ Node / 包管理
+# ----------------------------
+node_modules/
 npm-debug.log*
-pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
+pnpm-debug.log*
 
-# dotenv environment variable files
+# ----------------------------
+# ⚙️ 缓存与临时文件
+# ----------------------------
+.cache/
+.temp/
+.tmp/
+*.tmp
+*.bak
+*.swp
+*.log
+logs/
+
+# ----------------------------
+# ⚙️ IDE / 编辑器配置
+# ----------------------------
+.vscode/
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ----------------------------
+# ⚙️ Chrome 插件私密文件
+# ----------------------------
+*.pem               # ⚠️ Chrome 私钥文件，绝对不能上传
+*.pfx
+secrets.json
+
+# ----------------------------
+# ⚙️ 环境变量 / 私密配置
+# ----------------------------
 .env
-.env.development
-.env.test
-.env.production
+.env.*
+.credentials/
+config.local.json
 
-# temp directory
-.temp
-.tmp
+# ----------------------------
+# ⚙️ 构建工具缓存（Vite / Rollup / Webpack）
+# ----------------------------
+.vite/
+.rollup.cache/
+webpack-stats.json
+
+# ----------------------------
+# ⚙️ 测试与覆盖率
+# ----------------------------
+coverage/
+__tests__/
+*.spec.js
+*.test.js
+
+# ----------------------------
+# ⚙️ 其他可选
+# ----------------------------
+docs/
+screenshots/
+notes/
