@@ -94,28 +94,28 @@ var _hmt = _hmt || [];
             }
         }
         
-        /* 星星般的漂浮动画 - 减小移动范围避免进入球体 */
+        /* 星星般的漂浮动画 - 增强动画效果 */
         @keyframes starFloat1 {
             0% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
-            25% { transform: translate(20px, -15px) rotate(90deg); opacity: 1; }
-            50% { transform: translate(-10px, -30px) rotate(180deg); opacity: 0.8; }
-            75% { transform: translate(-18px, -8px) rotate(270deg); opacity: 1; }
+            25% { transform: translate(25px, -20px) rotate(90deg); opacity: 1; }
+            50% { transform: translate(-15px, -35px) rotate(180deg); opacity: 0.8; }
+            75% { transform: translate(-25px, -10px) rotate(270deg); opacity: 1; }
             100% { transform: translate(0, 0) rotate(360deg); opacity: 0.7; }
         }
         
         @keyframes starFloat2 {
             0% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
-            25% { transform: translate(-15px, 20px) rotate(90deg); opacity: 1; }
-            50% { transform: translate(25px, 10px) rotate(180deg); opacity: 0.7; }
-            75% { transform: translate(12px, -20px) rotate(270deg); opacity: 1; }
+            25% { transform: translate(-20px, 25px) rotate(90deg); opacity: 1; }
+            50% { transform: translate(30px, 15px) rotate(180deg); opacity: 0.7; }
+            75% { transform: translate(15px, -25px) rotate(270deg); opacity: 1; }
             100% { transform: translate(0, 0) rotate(360deg); opacity: 0.8; }
         }
         
         @keyframes starFloat3 {
             0% { transform: translate(0, 0) rotate(0deg); opacity: 0.9; }
-            25% { transform: translate(18px, 22px) rotate(90deg); opacity: 0.7; }
-            50% { transform: translate(-20px, 15px) rotate(180deg); opacity: 1; }
-            75% { transform: translate(8px, -22px) rotate(270deg); opacity: 0.8; }
+            25% { transform: translate(22px, 28px) rotate(90deg); opacity: 0.7; }
+            50% { transform: translate(-25px, 20px) rotate(180deg); opacity: 1; }
+            75% { transform: translate(12px, -28px) rotate(270deg); opacity: 0.8; }
             100% { transform: translate(0, 0) rotate(360deg); opacity: 0.9; }
         }
 
@@ -789,7 +789,7 @@ var _hmt = _hmt || [];
                 
                 // 随机星星动画
                 const animationType = animations[Math.floor(Math.random() * animations.length)];
-                const duration = 8 + Math.random() * 6; // 从15-25秒改为8-14秒，运动更快
+                const duration = 6 + Math.random() * 4; // 从8-14秒改为6-10秒，运动更快
                 
                 dot.style.animation = `${animationType} ${duration}s linear infinite`;
                 container.appendChild(dot);
@@ -890,11 +890,11 @@ var _hmt = _hmt || [];
             }
             
             // 持续生成星星点，但控制吸引频率
-            setInterval(createDot, 600); // 从800ms改为600ms，生成更频繁
+            setInterval(createDot, 500); // 从600ms改为500ms，生成更频繁
             
             // 初始生成适量的点
-            for(let i = 0; i < 20; i++) { // 从15个增加到20个
-                setTimeout(createDot, i * 200);
+            for(let i = 0; i < 25; i++) { // 从20个增加到25个
+                setTimeout(createDot, i * 150); // 从200ms改为150ms，生成更快
             }
         }
         
@@ -955,7 +955,11 @@ var _hmt = _hmt || [];
             for(let i=0; i<3000; i++) starPos.push((Math.random()-0.5)*2000, (Math.random()-0.5)*2000, (Math.random()-0.5)*2000);
             starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
             const starMat = new THREE.PointsMaterial({ size: 1, color: 0xffffff, transparent: true, opacity: 0.3 });
-            scene.add(new THREE.Points(starGeo, starMat));
+            const stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+            
+            // 存储星星引用用于动画
+            window.backgroundStars = stars;
             
             // 启动随机区域闪烁系统
             startRandomPulsing();
@@ -1039,6 +1043,13 @@ var _hmt = _hmt || [];
             // 应用当前速度
             globe.rotation.y += baseRotationSpeedY * currentSpeedMultiplier;
             globe.rotation.x += baseRotationSpeedX * currentSpeedMultiplier;
+            
+            // 让背景星星缓慢旋转
+            if (window.backgroundStars) {
+                window.backgroundStars.rotation.y += 0.0002;
+                window.backgroundStars.rotation.x += 0.0001;
+                window.backgroundStars.rotation.z += 0.0001;
+            }
             
             // 更新吸附点的位置，让它们跟随球体旋转
             updateAttachedDots();
