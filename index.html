@@ -702,11 +702,11 @@ var _hmt = _hmt || [];
         <div class="footer-terminal">
             <div class="stat-box">
                 <span class="stat-label">NEURAL SYNC</span>
-                <div class="stat-value">0.0012<small style="font-size: 10px;">ms</small></div>
+                <div class="stat-value" id="neuralSync">0.0012<small style="font-size: 10px;">ms</small></div>
             </div>
             <div class="stat-box">
                 <span class="stat-label">ENERGY YIELD</span>
-                <div class="stat-value">94.8<small style="font-size: 10px;">GW/s</small></div>
+                <div class="stat-value" id="energyYield">94.8<small style="font-size: 10px;">GW/s</small></div>
             </div>
             <div class="stat-box" style="flex-grow: 1; text-align: right;">
                 <span class="stat-label">ACTIVE NODES</span>
@@ -748,6 +748,82 @@ var _hmt = _hmt || [];
         
         // 启动Active Nodes更新
         updateActiveNodes();
+
+        // --- 2. NEURAL SYNC 随机数字变化 ---
+        function updateNeuralSync() {
+            const neuralSyncElement = document.getElementById('neuralSync');
+            let currentValue = 0.0012; // 初始值
+            
+            function generateRandomValue() {
+                // 随机选择增加或减少
+                const isIncrease = Math.random() > 0.5;
+                
+                // 在0.0002-0.0008范围内随机取一个变化值
+                const changeAmount = 0.0002 + Math.random() * 0.0006; // 0.0002到0.0008
+                
+                // 应用变化
+                if (isIncrease) {
+                    currentValue += changeAmount;
+                } else {
+                    currentValue -= changeAmount;
+                }
+                
+                // 确保数值在0.0009-0.01范围内
+                currentValue = Math.max(0.0009, Math.min(0.01, currentValue));
+                
+                // 格式化数字，保留4位小数
+                const formattedValue = currentValue.toFixed(4);
+                neuralSyncElement.innerHTML = `${formattedValue}<small style="font-size: 10px;">ms</small>`;
+                
+                // 设置下次更新时间（3-9秒随机）
+                const nextUpdateTime = 3000 + Math.random() * 6000; // 3-9秒
+                setTimeout(generateRandomValue, nextUpdateTime);
+            }
+            
+            // 开始更新
+            generateRandomValue();
+        }
+        
+        // 启动NEURAL SYNC更新
+        updateNeuralSync();
+
+        // --- 3. ENERGY YIELD 随机数字变化 ---
+        function updateEnergyYield() {
+            const energyYieldElement = document.getElementById('energyYield');
+            let currentValue = 94.8; // 初始值
+            
+            function generateRandomValue() {
+                // 随机选择增加或减少
+                const isIncrease = Math.random() > 0.5;
+                
+                // 在0.2-2.3范围内随机取一个变化值
+                const changeAmount = 0.2 + Math.random() * 2.1; // 0.2到2.3
+                
+                // 应用变化
+                if (isIncrease) {
+                    currentValue += changeAmount;
+                } else {
+                    currentValue -= changeAmount;
+                }
+                
+                // 确保数值在合理范围内（50.0到150.0）
+                currentValue = Math.max(50.0, Math.min(150.0, currentValue));
+                
+                // 格式化数字，保留1位小数
+                const formattedValue = currentValue.toFixed(1);
+                energyYieldElement.innerHTML = `${formattedValue}<small style="font-size: 10px;">GW/s</small>`;
+                
+                // 设置下次更新时间（4-13秒随机）
+                const nextUpdateTime = 4000 + Math.random() * 9000; // 4-13秒
+                setTimeout(generateRandomValue, nextUpdateTime);
+            }
+            
+            // 开始更新
+            generateRandomValue();
+        }
+        
+        // 启动ENERGY YIELD更新
+        updateEnergyYield();
 
         // --- 2.5. 星星般的小蓝点与球体融合效果 ---
         function createStarDotsSystem() {
