@@ -135,9 +135,122 @@ var _hmt = _hmt || [];
         .overlay {
             position: relative; z-index: 10; height: 100vh;
             display: flex; flex-direction: column; justify-content: space-between;
-            padding: 40px; pointer-events: none;
+            padding: 40px 40px 100px 40px; pointer-events: none;
         }
         .overlay * { pointer-events: auto; }
+
+        /* --- OpenElse 底部入口条 --- */
+        .openelse-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top, rgba(1, 1, 3, 0.96) 0%, rgba(1, 1, 3, 0.75) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 20;
+            transition: background 0.4s ease;
+            overflow: hidden;
+        }
+
+        /* 顶部青色光线 */
+        .openelse-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(0, 242, 255, 0.4) 30%,
+                var(--cyan) 50%,
+                rgba(0, 242, 255, 0.4) 70%,
+                transparent 100%);
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+            animation: openelseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes openelseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .openelse-bar:hover::before {
+            opacity: 1;
+            animation: none;
+        }
+
+        .openelse-bar:hover {
+            background: linear-gradient(to top, rgba(0, 242, 255, 0.08) 0%, rgba(1, 1, 3, 0.75) 100%);
+        }
+
+        .openelse-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .openelse-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .openelse-bar:hover .openelse-label {
+            color: rgba(0, 242, 255, 0.7);
+        }
+
+        .openelse-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+        }
+
+        .openelse-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .openelse-bar:hover .openelse-brand {
+            color: var(--cyan);
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+        }
+
+        .openelse-arrow {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            display: inline-flex;
+        }
+
+        .openelse-bar:hover .openelse-arrow {
+            color: var(--cyan);
+            transform: translateX(6px);
+        }
+
+        @media (max-width: 600px) {
+            .openelse-bar { height: 50px; }
+            .openelse-brand { font-size: 18px; }
+            .openelse-label { font-size: 9px; letter-spacing: 2px; }
+            .openelse-content { gap: 14px; }
+            .overlay { padding: 30px 20px 80px 20px; }
+        }
 
         /* --- 导航栏 --- */
         nav {
@@ -726,6 +839,20 @@ var _hmt = _hmt || [];
             </div>
         </div>
     </div>
+
+    <!-- OpenElse 底部入口条 -->
+    <a href="https://openelse.com/" target="_blank" rel="noopener noreferrer" class="openelse-bar" aria-label="Explore OpenElse - opens in new tab">
+        <span class="openelse-content">
+            <span class="openelse-label">Explore</span>
+            <span class="openelse-divider"></span>
+            <span class="openelse-brand">OpenElse</span>
+            <span class="openelse-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </span>
+    </a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
