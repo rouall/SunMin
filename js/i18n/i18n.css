@@ -1,0 +1,202 @@
+/* ===== SunMin i18n – 语言切换器 & RTL 适配 ===== */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-switcher {
+    position: relative;
+}
+
+.lang-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lang-trigger:hover,
+.lang-switcher.open .lang-trigger {
+    color: var(--cyan);
+    background: rgba(0, 242, 255, 0.06);
+    border-color: rgba(0, 242, 255, 0.45);
+    box-shadow: 0 0 12px rgba(0, 242, 255, 0.12);
+}
+
+.lang-trigger:focus-visible {
+    outline: 1px solid var(--cyan);
+    outline-offset: 2px;
+    color: var(--cyan);
+}
+
+.lang-globe {
+    width: 14px;
+    height: 14px;
+    opacity: 0.75;
+    transition: opacity 0.25s ease;
+}
+
+.lang-trigger:hover .lang-globe,
+.lang-switcher.open .lang-globe {
+    opacity: 1;
+}
+
+.lang-trigger-code {
+    min-width: 16px;
+    text-align: center;
+}
+
+.lang-chevron {
+    width: 10px;
+    height: 10px;
+    opacity: 0.6;
+    transition: transform 0.25s ease;
+}
+
+.lang-switcher.open .lang-chevron {
+    transform: rotate(180deg);
+}
+
+.lang-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    inset-inline-end: 0;
+    width: 276px;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(4, 6, 12, 0.96);
+    border: 1px solid rgba(0, 242, 255, 0.18);
+    border-radius: 6px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 60;
+}
+
+[dir="rtl"] .lang-menu {
+    transform-origin: top left;
+}
+
+.lang-switcher.open .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-sans, 'Space Grotesk', sans-serif);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    text-align: start;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.lang-option:hover,
+.lang-option:focus-visible {
+    outline: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.lang-option:focus-visible {
+    box-shadow: inset 0 0 0 1px rgba(0, 242, 255, 0.45);
+}
+
+.lang-option.active {
+    color: var(--cyan);
+    background: rgba(0, 242, 255, 0.08);
+}
+
+.lang-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lang-check {
+    flex: 0 0 auto;
+    width: 12px;
+    color: var(--cyan);
+    font-size: 11px;
+    line-height: 1;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+.lang-option.active .lang-check {
+    opacity: 1;
+}
+
+/* --- RTL 方向适配 --- */
+[dir="rtl"] .openelse-arrow svg {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .openelse-bar:hover .openelse-arrow {
+    transform: translateX(-6px);
+}
+
+/* --- 移动端紧凑展示 --- */
+@media (max-width: 600px) {
+    .nav-actions {
+        gap: 6px;
+    }
+
+    .lang-trigger {
+        height: 30px;
+        padding: 0 8px;
+        gap: 5px;
+    }
+
+    .lang-menu {
+        width: min(276px, calc(100vw - 32px));
+    }
+
+    .login-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lang-trigger,
+    .lang-globe,
+    .lang-chevron,
+    .lang-menu,
+    .lang-option,
+    .lang-check {
+        transition: none;
+    }
+}

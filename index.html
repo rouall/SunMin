@@ -35,13 +35,15 @@ var _hmt = _hmt || [];
             --bg: #010103;
             --panel-bg: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
+            --font-sans: 'Space Grotesk', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Noto Sans Arabic', 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, 'PingFang SC', 'Microsoft YaHei', 'Apple SD Gothic Neo', 'Noto Sans Arabic', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--bg);
             color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             overflow: hidden;
             height: 100vh;
         }
@@ -201,7 +203,7 @@ var _hmt = _hmt || [];
         }
 
         .openelse-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 10px;
             color: rgba(255, 255, 255, 0.45);
             letter-spacing: 3px;
@@ -220,7 +222,7 @@ var _hmt = _hmt || [];
         }
 
         .openelse-brand {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 20px;
             font-weight: 700;
             color: #fff;
@@ -250,6 +252,8 @@ var _hmt = _hmt || [];
             .openelse-label { font-size: 9px; letter-spacing: 2px; }
             .openelse-content { gap: 14px; }
             .overlay { padding: 30px 20px 80px 20px; }
+            .footer-terminal { gap: 16px; flex-wrap: wrap; }
+            .stat-box { padding: 8px 0; }
         }
 
         /* --- 导航栏 --- */
@@ -298,7 +302,7 @@ var _hmt = _hmt || [];
         }
         
         .login-btn { 
-            font-family: 'JetBrains Mono', monospace; 
+            font-family: var(--font-mono); 
             font-size: 12px; 
             color: #fff; 
             background: transparent;
@@ -359,7 +363,7 @@ var _hmt = _hmt || [];
         }
         
         .modal-title {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 18px;
             font-weight: 700;
             color: var(--cyan);
@@ -402,7 +406,7 @@ var _hmt = _hmt || [];
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.6);
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 500;
             padding: 15px;
@@ -439,7 +443,7 @@ var _hmt = _hmt || [];
         
         .input-group label {
             display: block;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 12px;
             color: var(--cyan);
             margin-bottom: 8px;
@@ -455,7 +459,7 @@ var _hmt = _hmt || [];
             border-radius: 4px;
             padding: 12px 15px;
             color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 14px;
             transition: all 0.3s ease;
         }
@@ -479,7 +483,7 @@ var _hmt = _hmt || [];
             border: none;
             border-radius: 4px;
             padding: 15px;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
@@ -496,7 +500,7 @@ var _hmt = _hmt || [];
         }
         
         .register-note {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 12px;
             color: rgba(255, 255, 255, 0.5);
             text-align: center;
@@ -506,7 +510,7 @@ var _hmt = _hmt || [];
         
         .input-error {
             display: block;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 11px;
             color: #ff4757;
             margin-top: 5px;
@@ -585,7 +589,7 @@ var _hmt = _hmt || [];
         }
         
         .alert-title {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 16px;
             font-weight: 700;
             color: #fff;
@@ -595,7 +599,7 @@ var _hmt = _hmt || [];
         }
         
         .alert-message {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.5;
@@ -608,7 +612,7 @@ var _hmt = _hmt || [];
             border: none;
             border-radius: 4px;
             padding: 12px 30px;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
@@ -638,7 +642,7 @@ var _hmt = _hmt || [];
             line-height: 1.1;
             margin-bottom: 40px;
             letter-spacing: -1px;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
         }
         
         .subtitle-group {
@@ -651,7 +655,7 @@ var _hmt = _hmt || [];
         }
         
         .subtitle-item {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 16px;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.8);
@@ -670,7 +674,7 @@ var _hmt = _hmt || [];
         }
         
         .description-text p {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-size: 18px;
             font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
@@ -683,7 +687,7 @@ var _hmt = _hmt || [];
             display: flex; gap: 40px; align-items: flex-end;
         }
         .stat-box { padding: 20px 30px; }
-        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--cyan); margin-bottom: 10px; display: block; }
+        .stat-label { font-family: var(--font-mono); font-size: 9px; color: var(--cyan); margin-bottom: 10px; display: block; letter-spacing: 1px; text-transform: uppercase; }
         .stat-value { font-size: 24px; font-weight: 700; }
 
         /* --- 按钮重新设计 --- */
@@ -695,7 +699,7 @@ var _hmt = _hmt || [];
             background: var(--cyan);
             color: #000;
             text-decoration: none;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-sans);
             font-weight: 600;
             font-size: 14px;
             letter-spacing: 1px;
@@ -722,6 +726,11 @@ var _hmt = _hmt || [];
         }
 
     </style>
+
+    <!-- 多语言：翻译数据 → 运行时 → 切换器样式 -->
+    <link rel="stylesheet" href="./js/i18n/i18n.css">
+    <script src="./js/i18n/translations.js"></script>
+    <script src="./js/i18n/i18n.js"></script>
 </head>
 <body>
 
@@ -734,29 +743,29 @@ var _hmt = _hmt || [];
     <div id="loginModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
-                <h2 class="modal-title">Access Control</h2>
+                <h2 class="modal-title" data-i18n="modal.title">Access Control</h2>
                 <button class="modal-close" onclick="closeLoginModal()">&times;</button>
             </div>
             
             <div class="modal-content">
                 <div class="login-tabs">
-                    <button class="tab-btn active" onclick="switchTab('login')">Login</button>
-                    <button class="tab-btn" onclick="switchTab('register')">Register</button>
+                    <button class="tab-btn active" onclick="switchTab('login')" data-i18n="modal.tab.login">Login</button>
+                    <button class="tab-btn" onclick="switchTab('register')" data-i18n="modal.tab.register">Register</button>
                 </div>
                 
                 <!-- 登录表单 -->
                 <div id="loginForm" class="form-container active">
                     <form onsubmit="handleLogin(event)">
                         <div class="input-group">
-                            <label for="loginUsername">Username</label>
+                            <label for="loginUsername" data-i18n="form.username">Username</label>
                             <input type="text" id="loginUsername" name="username" required>
                             <span class="input-error" id="usernameError"></span>
                         </div>
                         <div class="input-group">
-                            <label for="loginPassword">Password</label>
+                            <label for="loginPassword" data-i18n="form.password">Password</label>
                             <input type="password" id="loginPassword" name="password" required>
                         </div>
-                        <button type="submit" class="submit-btn">Access System</button>
+                        <button type="submit" class="submit-btn" data-i18n="form.loginSubmit">Access System</button>
                     </form>
                 </div>
                 
@@ -764,24 +773,24 @@ var _hmt = _hmt || [];
                 <div id="registerForm" class="form-container">
                     <form onsubmit="handleRegister(event)">
                         <div class="input-group">
-                            <label for="regUsername">Username</label>
+                            <label for="regUsername" data-i18n="form.username">Username</label>
                             <input type="text" id="regUsername" name="username" required>
                             <span class="input-error" id="regUsernameError"></span>
                         </div>
                         <div class="input-group">
-                            <label for="regEmail">Email</label>
+                            <label for="regEmail" data-i18n="form.email">Email</label>
                             <input type="email" id="regEmail" name="email" required>
                         </div>
                         <div class="input-group">
-                            <label for="regPassword">Password</label>
+                            <label for="regPassword" data-i18n="form.password">Password</label>
                             <input type="password" id="regPassword" name="password" required>
                         </div>
                         <div class="input-group">
-                            <label for="regReason">Application Reason</label>
-                            <textarea id="regReason" name="reason" placeholder="Please explain why you need access to SUNMIN systems..." required></textarea>
+                            <label for="regReason" data-i18n="form.reason">Application Reason</label>
+                            <textarea id="regReason" name="reason" placeholder="Please explain why you need access to SUNMIN systems..." data-i18n-placeholder="form.reasonPlaceholder" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Submit Application</button>
-                        <p class="register-note">Applications are reviewed manually. You will be notified once approved.</p>
+                        <button type="submit" class="submit-btn" data-i18n="form.registerSubmit">Submit Application</button>
+                        <p class="register-note" data-i18n="form.registerNote">Applications are reviewed manually. You will be notified once approved.</p>
                     </form>
                 </div>
             </div>
@@ -795,55 +804,70 @@ var _hmt = _hmt || [];
                 <span id="alertIconSymbol">!</span>
             </div>
             <div class="alert-content">
-                <h3 class="alert-title" id="alertTitle">System Alert</h3>
-                <p class="alert-message" id="alertMessage">Message content</p>
+                <h3 class="alert-title" id="alertTitle" data-i18n="alert.defaultTitle">System Alert</h3>
+                <p class="alert-message" id="alertMessage" data-i18n="alert.defaultMessage">Message content</p>
             </div>
-            <button class="alert-close" onclick="closeCustomAlert()">OK</button>
+            <button class="alert-close" onclick="closeCustomAlert()" data-i18n="alert.ok">OK</button>
         </div>
     </div>
 
     <div class="overlay">
         <nav>
             <a href="#" class="brand">SUNM<span class="i-letter">i</span>N</a>
-            <button class="login-btn" onclick="openLoginModal()">Login</button>
+            <div class="nav-actions">
+                <div class="lang-switcher" id="langSwitcher">
+                    <button type="button" class="lang-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="langMenu" aria-label="Select language">
+                        <svg class="lang-globe" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M3 12h18M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="lang-trigger-code">ZH</span>
+                        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="lang-menu" id="langMenu" role="listbox" aria-label="Select language"></div>
+                </div>
+                <button class="login-btn" onclick="openLoginModal()" data-i18n="nav.login">Login</button>
+            </div>
         </nav>
 
         <div class="hero-main">
             <div class="subtitle-group">
-                <span class="subtitle-item">AI</span>
+                <span class="subtitle-item" data-i18n="hero.tag.ai">AI</span>
                 <span class="subtitle-separator">•</span>
-                <span class="subtitle-item">Advanced Robotics</span>
+                <span class="subtitle-item" data-i18n="hero.tag.robotics">Advanced Robotics</span>
                 <span class="subtitle-separator">•</span>
-                <span class="subtitle-item">Sustainable Energy</span>
+                <span class="subtitle-item" data-i18n="hero.tag.energy">Sustainable Energy</span>
             </div>
             
-            <h1 class="main-title">Engineering the Intelligent Future</h1>
+            <h1 class="main-title" data-i18n="hero.title">Engineering the Intelligent Future</h1>
             
             <div class="description-text">
-                <p>SunMin integrates high-dimensional neural networks with next-generation fusion energy technology to build a self-evolving, all-state fusion reaction system, providing global access to ultimate computing capabilities and new energy support.</p>
+                <p data-i18n="hero.description">SunMin integrates high-dimensional neural networks with next-generation fusion energy technology to build a self-evolving, all-state fusion reaction system, providing global access to ultimate computing capabilities and new energy support.</p>
             </div>
         </div>
 
         <div class="footer-terminal">
             <div class="stat-box">
-                <span class="stat-label">NEURAL SYNC</span>
+                <span class="stat-label" data-i18n="stats.neuralSync">NEURAL SYNC</span>
                 <div class="stat-value" id="neuralSync">0.0012<small style="font-size: 10px;">ms</small></div>
             </div>
             <div class="stat-box">
-                <span class="stat-label">ENERGY YIELD</span>
+                <span class="stat-label" data-i18n="stats.energyYield">ENERGY YIELD</span>
                 <div class="stat-value" id="energyYield">94.8<small style="font-size: 10px;">GW/s</small></div>
             </div>
-            <div class="stat-box" style="flex-grow: 1; text-align: right;">
-                <span class="stat-label">ACTIVE NODES</span>
+            <div class="stat-box" style="flex-grow: 1; text-align: end;">
+                <span class="stat-label" data-i18n="stats.activeNodes">ACTIVE NODES</span>
                 <div class="stat-value" id="activeNodes">156,847</div>
             </div>
         </div>
     </div>
 
     <!-- OpenElse 底部入口条 -->
-    <a href="https://openelse.com/" target="_blank" rel="noopener noreferrer" class="openelse-bar" aria-label="Explore OpenElse - opens in new tab">
+    <a href="https://openelse.com/" target="_blank" rel="noopener noreferrer" class="openelse-bar" aria-label="Explore OpenElse - opens in new tab" data-i18n-aria-label="openelse.aria">
         <span class="openelse-content">
-            <span class="openelse-label">Explore</span>
+            <span class="openelse-label" data-i18n="openelse.explore">Explore</span>
             <span class="openelse-divider"></span>
             <span class="openelse-brand">OpenElse</span>
             <span class="openelse-arrow" aria-hidden="true">
@@ -854,12 +878,18 @@ var _hmt = _hmt || [];
         </span>
     </a>
 
+    <script src="./js/i18n/language-switcher.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // --- 1. Active Nodes 随机数字变化 ---
         function updateActiveNodes() {
             const activeNodesElement = document.getElementById('activeNodes');
             let currentNodes = 156847; // 初始值
+
+            // 切换语言后立即按新语言重新格式化
+            document.addEventListener('i18n:changed', () => {
+                activeNodesElement.textContent = I18n.number(currentNodes);
+            });
             
             function generateRandomNodes() {
                 // 每次变化幅度在当前值的-5%到+5%之间
@@ -872,9 +902,8 @@ var _hmt = _hmt || [];
                 // 确保数值在8万到30万范围内
                 currentNodes = Math.max(80000, Math.min(300000, currentNodes));
                 
-                // 格式化数字，添加千位分隔符
-                const formattedNumber = currentNodes.toLocaleString();
-                activeNodesElement.textContent = formattedNumber;
+                // 格式化数字，添加千位分隔符（跟随当前语言）
+                activeNodesElement.textContent = I18n.number(currentNodes);
                 
                 // 设置下次更新时间（1-9秒随机）
                 const nextUpdateTime = 1000 + Math.random() * 8000; // 1-9秒
@@ -1443,13 +1472,13 @@ var _hmt = _hmt || [];
             
             // 验证用户名格式
             if (!validateUsername(username)) {
-                showError('loginUsername', 'Username must contain only letters and numbers');
+                showError('loginUsername', I18n.t('error.username'));
                 return;
             }
             
             // 模拟登录失败（所有账号都登录错误）
             setTimeout(() => {
-                showCustomAlert('error', 'Access Denied', 'Invalid credentials. Access to SUNMIN systems is restricted.');
+                showCustomAlert('error', I18n.t('alert.deniedTitle'), I18n.t('alert.deniedMessage'));
             }, 500);
         }
         
@@ -1464,14 +1493,14 @@ var _hmt = _hmt || [];
             
             // 验证用户名格式
             if (!validateUsername(username)) {
-                showError('regUsername', 'Username must contain only letters and numbers');
+                showError('regUsername', I18n.t('error.username'));
                 return;
             }
             
             // 模拟提交成功
             setTimeout(() => {
-                showCustomAlert('success', 'Application Submitted', 
-                    `Registration application for "${username}" has been submitted successfully. You will be notified once your application is reviewed and approved.`);
+                showCustomAlert('success', I18n.t('alert.submittedTitle'),
+                    I18n.t('alert.submittedMessage', { username: username }));
                 closeLoginModal();
                 
                 // 清空表单
